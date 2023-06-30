@@ -1,0 +1,39 @@
+.nav-bar {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  height: 8vh;
+  background-color: #2c0e3a;
+  width: 100vw;
+}
+
+.website-logo {
+  width: 180px;
+  height: 33px;
+  margin-left: 20px;
+}
+
+.timer-score-container {
+  margin-right: 20px;
+  width: 220px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+  color: #fec653;
+}
+
+.timer-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.timer-img {
+  width: 18px;
+  height: 18px;
+  margin-right: 5px;
+}
