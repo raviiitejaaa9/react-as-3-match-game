@@ -6,6 +6,8 @@ import Thumbnail from '../Thumbnail'
 
 class Home extends Component {
   state = {
+    timer: 60,
+    isTimerRunning: true,
     activeTabId: 'FRUIT',
     randomImgNo: 0,
     score: 0,
@@ -13,10 +15,41 @@ class Home extends Component {
     toResetTimer: false,
   }
 
+  componentDidMount() {
+    this.startTimer()
+  }
+
+  componentWillUnmount() {
+    clearTimeout(this.intervalId)
+  }
+
+  timeChange = () => {
+    const {timer} = this.state
+    // console.log(typeof timer)
+    if (timer !== 0) {
+      this.setState(prevState => ({
+        timer: prevState.timer - 1,
+      }))
+    } else {
+      clearInterval(this.intervalId)
+      this.setState({isTimerRunning: false})
+    }
+  }
+
+  startTimer = () => {
+    this.intervalId = setInterval(this.timeChange, 1000)
+  }
+
+  stopTimer = () => {
+    clearInterval(this.intervalId)
+  }
+
   onClickPlayAgain = () => {
     this.setState({
       toClearInterval: false,
+      timer: 60,
     })
+    this.componentDidMount()
   }
 
   onSelectThumbnail = id => {
@@ -38,6 +71,7 @@ class Home extends Component {
       this.setState({
         toClearInterval: true,
       })
+      this.stopTimer()
     }
   }
 
@@ -128,7 +162,7 @@ class Home extends Component {
   }
 
   render() {
-    const {score, toClearInterval} = this.state
+    const {score, toClearInterval, timer} = this.state
 
     const reqContainer = toClearInterval
       ? this.gameOverCard()
@@ -136,7 +170,7 @@ class Home extends Component {
 
     return (
       <div className="app-container">
-        <Header score={score} toClearInterval={toClearInterval} />
+        <Header score={score} toClearInterval={toClearInterval} timer={timer} />
         {reqContainer}
       </div>
     )
