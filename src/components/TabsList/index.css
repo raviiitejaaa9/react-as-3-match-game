@@ -5,3 +5,16 @@
   cursor: pointer;
   font-size: 26px;
 }
+
+.tab-btn {
+  border: none;
+  background-color: transparent;
+  color: #ffffff;
+  width: 120px;
+  height: 35px;
+  font-size: 26px;
+}
+
+.underline {
+  border-bottom: 2px #fec653 solid;
+}

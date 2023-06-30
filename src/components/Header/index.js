@@ -12,17 +12,20 @@ const Header = props => {
         alt="website logo"
         className="website-logo"
       />
-      <div className="timer-score-container">
-        <p> score: {score} </p>
-        <div className="timer-container">
+      <ul className="timer-score-container">
+        <li>
+          {' '}
+          <p>Score: {score.toString()}</p>{' '}
+        </li>
+        <li className="timer-container">
           <img
             className="timer-img"
             src="https://assets.ccbp.in/frontend/react-js/match-game-timer-img.png "
             alt="timer"
           />
           <p> {reqTime} Sec </p>
-        </div>
-      </div>
+        </li>
+      </ul>
     </div>
   )
 }

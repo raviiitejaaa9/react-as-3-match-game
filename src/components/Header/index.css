@@ -23,6 +23,7 @@
   justify-content: space-around;
   align-items: center;
   color: #fec653;
+  list-style-type: none;
 }
 
 .timer-container {

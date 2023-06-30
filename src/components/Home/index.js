@@ -32,7 +32,7 @@ class Home extends Component {
       }))
     } else {
       clearInterval(this.intervalId)
-      this.setState({isTimerRunning: false})
+      this.setState({isTimerRunning: false, toClearInterval: true})
     }
   }
 
@@ -48,6 +48,7 @@ class Home extends Component {
     this.setState({
       toClearInterval: false,
       timer: 60,
+      score: 0,
     })
     this.componentDidMount()
   }
@@ -102,6 +103,7 @@ class Home extends Component {
 
   gameOverCard = () => {
     const {score} = this.state
+
     return (
       <div className="game-over-container">
         <img
@@ -109,7 +111,7 @@ class Home extends Component {
           alt="trophy"
           className="trophy-img"
         />
-        <p className="text-format"> Your Score </p>
+        <p className="text-format"> YOUR SCORE </p>
         <p className="text-format"> {score} </p>
         <button
           type="button"
@@ -121,7 +123,7 @@ class Home extends Component {
             alt="reset"
             className="reset-img"
           />
-          <p className="play-again"> Play Again </p>
+          <p className="play-again"> PLAY AGAIN </p>
         </button>
       </div>
     )
@@ -129,7 +131,7 @@ class Home extends Component {
 
   getImageGame = () => {
     const thumbnailList = this.getFilteredList()
-    const {randomImgNo} = this.state
+    const {randomImgNo, activeTabId} = this.state
 
     const {tabsList, imagesList} = this.props
 
@@ -145,10 +147,11 @@ class Home extends Component {
               tabItem={eachItem}
               key={eachItem.tabId}
               onSelectTabId={this.onSelectTabId}
+              activeTabId={activeTabId}
             />
           ))}
         </ul>
-        <div className="thumbnail-container">
+        <ul className="thumbnail-container">
           {thumbnailList.map(eachItem => (
             <Thumbnail
               imageItem={eachItem}
@@ -156,7 +159,7 @@ class Home extends Component {
               onSelectThumbnail={this.onSelectThumbnail}
             />
           ))}
-        </div>
+        </ul>
       </>
     )
   }
